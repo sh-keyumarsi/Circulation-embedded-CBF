@@ -134,30 +134,30 @@ class GP():
         robot_rad = 0.1
         hgp_xq=mpost+1 -robot_rad
    
-        return  hgp_xq,alpha,kXX,ktt,ktX
+        return  hgp_xq, alpha,kXX,ktt,ktX
 
     def get_cbf_safety_prediction(self,t,dis_f):
-        """ can be only computed for one state at a time """
+        """ can only be computed for one state at a time. """
         #Computing dh/dx
         hgp_xq,alpha,kXX,ktt,ktX=self.update_gp_computation(t)   
         # Use the Cholesky decomposition to factorize A
         L_cho_1, lower_1 = cho_factor(kXX)
         # Solve the linear system using cho_solve       
-        betha = cho_solve((L_cho_1, lower_1), self.data_Y).T
+        beta = cho_solve((L_cho_1, lower_1), self.data_Y).T
         #checking if the inverse matrix is accurate
-        accurate=relative_error(kXX,betha.T, self.data_Y)
+        accurate=relative_error(kXX,beta.T, self.data_Y)
         # Check the accuracy of the solution
         if not accurate:
             # print("The cholesky inverse is not accurate.")
-            betha = np.linalg.solve(kXX ,self.data_Y).T  # the expensive bit
-            accurate_1=relative_error(kXX,betha.T, self.data_Y)
+            beta = np.linalg.solve(kXX ,self.data_Y).T  # the expensive bit
+            accurate_1=relative_error(kXX,beta.T, self.data_Y)
             if not accurate_1:
                 # print("The linlg.solve inverse is not accurate.")
-                betha =(np.linalg.pinv(kXX) @  self.data_Y).T # the expensive bit   
-        tetha = np.block([[ktX[0,i]*( self.data_X[i]-t ) ] for i in range(len(self.data_X))])
-        dkdx_xq = (tetha * self.L_2).T
+                beta =(np.linalg.pinv(kXX) @  self.data_Y).T # the expensive bit   
+        theta = np.block([[ktX[0,i]*( self.data_X[i]-t ) ] for i in range(len(self.data_X))])
+        dkdx_xq = (theta * self.L_2).T
         """ dhgpdt = dhgpdx I u """
-        dmpost= np.inner(betha, dkdx_xq ) 
+        dmpost= np.inner(beta, dkdx_xq ) 
         # dvpost= -np.inner(2*alpha, dkdx_xq ) 
         #std= vpost^0.5=> dstd= dvpost * 1/2 * vpost^-0.5 
         # dstd=dvpost * 1/2 * vpost**-0.5 
