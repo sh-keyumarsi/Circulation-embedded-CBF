@@ -12,9 +12,9 @@ Code and simulation assets for the paper:
 You can view the experiment here:  
 [NeboLab Experiment](https://www.youtube.com/watch?v=69W5bmbBVcI)
 
-# Circulation-Embedded CBF — Code & Simulations
+## Circulation-Embedded CBF — Code & Simulations
 
-#Simulation
+### Simulation
 
 This repository includes a simulator that visualizes the robotic experiment as the code runs.
 When executed, the simulation window will open and display the robot’s behavior step by step.
