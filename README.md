@@ -7,6 +7,10 @@ Code and simulation assets for the paper:
 > Shaghayegh Keyumarsi et al.
 
 
+## Experiment
+
+You can view the experiment here:  
+[NeboLab Experiment](https://www.youtube.com/watch?v=69W5bmbBVcI)
 
 # Circulation-Embedded CBF — Code & Simulations
 
