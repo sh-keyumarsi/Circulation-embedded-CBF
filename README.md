@@ -20,21 +20,21 @@ This repository includes a simulator that visualizes the robotic experiment as t
 When executed, the simulation window will open and display the robot’s behavior step by step.
 
 
-How to run:
+### How to run:
 
--Nonconvex obstacle simulation
+#### Nonconvex obstacle simulation
 
 python nonconvex-sim/lidar_gp_cbf/sim2D_main.py
 
--Multi-agent deadlock resolution
+#### Multi-agent deadlock resolution
 
 python multiagent-deadlock-sim/lidar_gp_cbf/sim2D_main.py
 
 
-Outputs & animations
+### Outputs & animations
 Generated media are saved under each module’s animation_result/ (tracked in Git).
 
 Re-running scripts may overwrite existing files.
 
-Contact
+## Contact
 Shaghayegh Keyumarsi — GitHub: sh-keyumarsi
